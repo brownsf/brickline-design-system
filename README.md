@@ -14,6 +14,39 @@ pnpm build
 
 The build type-checks TypeScript and creates a static Vite site in `dist/`.
 
+## Storybook
+
+Requires Node.js 20.19+ or 22.12+. Storybook 10.6 uses the project's React/Vite setup and Brickline styles.
+
+```sh
+pnpm storybook
+```
+
+Open `http://127.0.0.1:6006`. Use the **Theme** toolbar menu for light/dark mode, **Controls** to edit props, **Docs** for generated API documentation, and **Accessibility** to inspect issues. The theme also applies to portaled dialogs. Accessibility findings are advisory; adding the addon does not establish an accessibility pass.
+
+```sh
+pnpm typecheck
+pnpm build-storybook
+```
+
+The static catalog is generated in `storybook-static/` and is excluded from Git. Type checking includes the stories, Storybook configuration, and Vite configuration. Storybook is a development dependency; the application bundle does not import the stories.
+
+The component stories live beside the UI code in `src/components/ui/*.stories.tsx`:
+
+| Family | Examples |
+| --- | --- |
+| Button | All five variants, small/icon sizes, disabled, icons, floating action, and asChild link |
+| Input | Empty, filled, disabled, read-only, password, validation error, and typing |
+| Card | Basic surface, actions, and semantic article composition |
+| Badge | Default, ready, draft, and status comparison |
+| Switch | On/off, disabled states, and controlled interaction synchronized with Controls |
+| Tabs | Default/alternate selection, disabled tab, card composition, and keyboard navigation |
+| Dialog | Basic modal, initially open, dismissal/focus return, and a controlled project form |
+
+Dialog stories document and exercise DialogTrigger, DialogContent, DialogTitle, DialogDescription, and DialogClose. Tabs stories include TabsList, TabsTrigger, and TabsContent. `buttonVariants` is a styling utility rather than a rendered component; its options are covered by the Button stories and Controls.
+
+Stories with `play` functions exercise button callbacks, text entry, switch click/Space input, tab arrow keys, dialog Escape/Cancel dismissal, focus return, and form submission. Open an individual story to run its interaction steps and inspect the Interactions panel. A static build compiles these examples but does not execute browser interactions; browser execution is a separate verification step. The initially open modal is excluded from Autodocs so it cannot block the rest of the documentation page.
+
 ## Use in your planned project
 
 This is a source-owned React + TypeScript starter using shadcn conventions: `components.json`, CVA button variants, `cn`, CSS semantic tokens, Radix interaction primitives, and Tailwind v4. The components have been adapted for this theme; they are not an installed Material UI dependency. No MUI runtime is needed.
