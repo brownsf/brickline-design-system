@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.sites/
+*.local
+.pnpm-store/
+.openai/
+.env
+.env.*
+!.env.example
+*.log
