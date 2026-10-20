@@ -31,6 +31,14 @@ pnpm build-storybook
 
 The static catalog is generated in `storybook-static/` and is excluded from Git. Type checking includes the stories, Storybook configuration, and Vite configuration. Storybook is a development dependency; the application bundle does not import the stories.
 
+### GitHub Pages deployment
+
+The `Deploy Storybook to GitHub Pages` workflow builds, type-checks, and deploys Storybook on every push to `main`. It can also be started from the repository's **Actions** tab with **Run workflow** on `main`.
+
+Before the first deployment, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions**. Push the workflow to `main` to deploy. No custom deployment secret is required; the workflow uses GitHub's built-in token with Pages and OIDC permissions limited to the deployment job.
+
+The published catalog will be available at <https://brownsf.github.io/brickline-design-system/> after a successful deployment. The deployment job also links to the published URL in the `github-pages` environment.
+
 The component stories live beside the UI code in `src/components/ui/*.stories.tsx`:
 
 | Family | Examples |
