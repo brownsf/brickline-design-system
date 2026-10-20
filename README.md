@@ -45,6 +45,7 @@ The component stories live beside the UI code in `src/components/ui/*.stories.ts
 | --- | --- |
 | Button | All five variants, small/icon sizes, disabled, icons, floating action, and asChild link |
 | Input | Empty, filled, disabled, read-only, password, validation error, and typing |
+| Forms | Field/Label associations and validation, Textarea, Checkbox, Radio Group, and native Select; keyboard interaction and disabled states |
 | Card | Basic surface, actions, and semantic article composition |
 | Badge | Default, ready, draft, and status comparison |
 | Switch | On/off, disabled states, and controlled interaction synchronized with Controls |
@@ -82,4 +83,18 @@ Radix provides behavior for the complex controls. The starter includes visible f
 
 No team name, logo, bird illustration, monogram, uniform motif, or team lettering is included. The theme is independently drawn and uses its own palette. This does not establish trademark clearance or guarantee freedom from legal issues; review the eventual product name and identity before a commercial launch.
 
-This first release is a starter, not a complete component catalog or a published npm package. Tables, menus, select/combobox, date picker, form validation, and a distribution registry can be added once the planned product's needs are defined.
+This first release is a starter, not a complete component catalog or a published npm package. Tables, menus, combobox, date picker, schema-based form validation, and a distribution registry can be added once the planned product's needs are defined.
+
+### Form controls
+
+Import `Field`, `Label`, `Textarea`, `Checkbox`, `RadioGroup`, `RadioGroupItem`, and `Select` from `src/components/ui`. These controls use native HTML behavior and the active light/dark theme. `Select` accepts native `option` and `optgroup` children. Checkbox and radio inputs use `checked`/`onChange` or `defaultChecked`; select and textarea use `value`/`onChange` or `defaultValue`.
+
+`Field` connects a visible label, description, and error message to one control through a render function:
+
+```tsx
+<Field label="Project description" description="Describe your project." error={error}>
+  {controlProps => <Textarea {...controlProps} name="description" required />}
+</Field>
+```
+
+Wrap each checkbox or radio in a visible label, or associate a `Label` using `htmlFor` and `id`. `RadioGroup` provides a fieldset and legend and shares a generated name between its items; provide an explicit `name` for form submission. Use a different group name for each independent question. `Field` displays supplied errors; validation logic remains with the consuming form.
