@@ -1,6 +1,7 @@
 /* Brickline v0.1. Import AFTER your default shadcn theme.
    Original theme; working name has not been trademark-cleared. */
 :root {
+  color-scheme: light;
   --background: #f8f7f4;
   --foreground: #203449;
   --card: #ffffff;
@@ -27,23 +28,24 @@
   --shadow-3: 0 12px 30px #15223326, 0 4px 10px #15223314;
 }
 .dark {
-  --background: #152331;
-  --foreground: #eeeae4;
-  --card: #203141;
-  --card-foreground: #eeeae4;
-  --popover: #203141;
-  --popover-foreground: #eeeae4;
+  color-scheme: dark;
+  --background: #203449;
+  --foreground: #ffffff;
+  --card: #293f55;
+  --card-foreground: #ffffff;
+  --popover: #293f55;
+  --popover-foreground: #ffffff;
   --primary: #ce5962;
   --primary-foreground: #ffffff;
   --secondary: #344d64;
   --secondary-foreground: #ffffff;
-  --muted: #2c4053;
-  --muted-foreground: #b3bdc7;
-  --accent: #2a3c4b;
-  --accent-foreground: #eeeae4;
+  --muted: #30485f;
+  --muted-foreground: #d1dbe5;
+  --accent: #344d64;
+  --accent-foreground: #ffffff;
   --destructive: #d35c66;
   --destructive-foreground: #ffffff;
-  --border: #3a4956;
+  --border: #52677c;
   --input: #7e8a95;
   --ring: #e17f87;
 }
