@@ -7,6 +7,8 @@ import { cn } from '../../lib/utils'
 export { Button, buttonVariants } from './button'
 export { Label, Field, Textarea, Checkbox, RadioGroup, RadioGroupItem, Select } from './forms'
 export type { FieldProps, RadioGroupProps } from './forms'
+export { Alert, AlertTitle, AlertDescription, Toast, ToastViewport, Spinner, Skeleton } from './feedback'
+export type { AlertProps, ToastProps, SpinnerProps, FeedbackVariant } from './feedback'
 export function Card({className,...props}:React.HTMLAttributes<HTMLDivElement>) { return <div className={cn('bl-card',className)} {...props}/> }
 export const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(({className,...props},ref)=><input ref={ref} className={cn('bl-input',className)} {...props}/> )
 Input.displayName='Input'

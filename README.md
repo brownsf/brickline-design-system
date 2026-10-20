@@ -46,6 +46,10 @@ The component stories live beside the UI code in `src/components/ui/*.stories.ts
 | Button | All five variants, small/icon sizes, disabled, icons, floating action, and asChild link |
 | Input | Empty, filled, disabled, read-only, password, validation error, and typing |
 | Forms | Field/Label associations and validation, Textarea, Checkbox, Radio Group, and native Select; keyboard interaction and disabled states |
+| Alert | Info, success, warning, error, and title-only inline feedback |
+| Toast | Controlled notifications, all four variants, keyboard dismissal and reopening |
+| Spinner | Three sizes, accessible loading labels, and a loading button |
+| Skeleton | Text and project-card placeholders |
 | Card | Basic surface, actions, and semantic article composition |
 | Badge | Default, ready, draft, and status comparison |
 | Switch | On/off, disabled states, and controlled interaction synchronized with Controls |
@@ -98,3 +102,27 @@ Import `Field`, `Label`, `Textarea`, `Checkbox`, `RadioGroup`, `RadioGroupItem`,
 ```
 
 Wrap each checkbox or radio in a visible label, or associate a `Label` using `htmlFor` and `id`. `RadioGroup` provides a fieldset and legend and shares a generated name between its items; provide an explicit `name` for form submission. Use a different group name for each independent question. `Field` displays supplied errors; validation logic remains with the consuming form.
+
+### Feedback and loading
+
+Import `Alert`, `AlertTitle`, `AlertDescription`, `Toast`, `ToastViewport`, `Spinner`, and `Skeleton` from `src/components/ui`. All use the active theme; Spinner and Skeleton stop animating when reduced motion is requested.
+
+```tsx
+<Alert variant="success">
+  <AlertTitle>Changes saved</AlertTitle>
+  <AlertDescription>Your project is up to date.</AlertDescription>
+</Alert>
+
+<Spinner size="sm" label="Loading projects" />
+
+<section aria-label="Loading projects" aria-busy="true">
+  <Skeleton style={{ height: 140 }} />
+</section>
+
+<ToastViewport>
+  <Toast open={open} onOpenChange={setOpen} variant="success"
+    title="Changes saved" description="Your project is up to date." />
+</ToastViewport>
+```
+
+Alert and Toast support `info`, `success`, `warning`, and `error`. Error announcements are assertive; other variants are polite. Override Alert's `role` for static messages that should not announce. Keep Toast mounted before setting `open` so the live region can announce updates. Toasts stay visible until dismissed and never take focus automatically. If dismissal removes the focused button, restore focus to an appropriate control in `onOpenChange`; the Toast stories demonstrate this. Use a single ToastViewport for a page's notifications. Skeletons are decorative and hidden from assistive technology; label the containing loading region and clear `aria-busy` when content arrives.

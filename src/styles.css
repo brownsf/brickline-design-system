@@ -32,3 +32,29 @@
 .bl-input[readonly]{cursor:default}
 .bl-choice-label:has(:disabled){opacity:.6;cursor:not-allowed}
 select:focus-visible,textarea:focus-visible{outline:2px solid var(--ring);outline-offset:4px}
+
+/* Feedback components share semantic surfaces in both themes. */
+.bl-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.bl-feedback-info{--feedback-color:var(--foreground)}
+.bl-feedback-success{--feedback-color:#356746}
+.bl-feedback-warning{--feedback-color:#815610}
+.bl-feedback-error{--feedback-color:#a92d37}
+.dark .bl-feedback-success{--feedback-color:#a9d8bc}
+.dark .bl-feedback-warning{--feedback-color:#f1ce86}
+.dark .bl-feedback-error{--feedback-color:#ffabb2}
+.bl-alert,.bl-toast{display:flex;align-items:flex-start;gap:12px;padding:16px;border:1px solid color-mix(in srgb,var(--feedback-color) 45%,var(--border));border-radius:4px;background:color-mix(in srgb,var(--feedback-color) 7%,var(--card));color:var(--foreground);font-size:13px;line-height:1.6}
+.bl-feedback-icon{color:var(--feedback-color);margin-top:2px;flex-shrink:0}
+.bl-feedback-copy{min-width:0;flex:1;overflow-wrap:anywhere}
+.bl-alert-title{font-size:14px;font-weight:600;line-height:1.5;margin:0}
+.bl-alert-description{font-size:13px;line-height:1.7;color:var(--muted-foreground);margin:4px 0 0}
+.bl-toast-viewport{position:fixed;bottom:24px;right:24px;z-index:90;display:flex;flex-direction:column;gap:12px;width:min(380px,calc(100vw - 32px));max-height:calc(100dvh - 48px);overflow-y:auto;pointer-events:none}
+.bl-toast-slot{min-width:0}
+.bl-toast{box-shadow:var(--shadow-3);pointer-events:auto}
+.bl-toast-dismiss{flex-shrink:0;color:var(--foreground);margin:-4px -4px 0 0}
+.bl-spinner{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;flex-shrink:0;color:inherit}
+.bl-spinner svg{width:100%;height:100%;animation:bl-spin .8s linear infinite}
+.bl-spinner-sm{width:14px;height:14px}.bl-spinner-md{width:24px;height:24px}.bl-spinner-lg{width:40px;height:40px}
+.bl-skeleton{height:16px;width:100%;border-radius:4px;background:var(--muted);animation:bl-pulse 1.8s ease-in-out infinite}
+@keyframes bl-spin{to{transform:rotate(360deg)}}
+@keyframes bl-pulse{50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){.bl-spinner svg,.bl-skeleton{animation:none}}
